@@ -1,0 +1,151 @@
+package homeworkmars;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class MarsMain {
+	
+	public void dosyaOlustur() {
+		File file=new File("Mars.txt");
+		try {
+			System.out.println("Dosya oluşturuluyor");
+			file.createNewFile();
+			System.out.println("Dosya oluşturuldu!");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void lineCounter() {
+		BufferedReader reader=null;
+		int lines=0;
+		try {
+			reader=new BufferedReader(new FileReader("mars.txt"));
+			try {
+				while(reader.readLine()!=null) {
+					lines++;
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("Toplam satır sayısı: " + lines);
+	}
+	
+	public void wordCounter() throws IOException {
+		int words=0;
+		String[] wordArray=null;
+		String s= null;
+		try(Scanner scan=new Scanner(new FileReader("mars.txt"))){
+			while(scan.hasNextLine()) {
+				s=scan.nextLine();
+				wordArray=s.split(" ");
+				words= words+wordArray.length;
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Kelime sayısı: " + words);
+	}
+	public void characterCounter() throws IOException {
+		String s= null;
+		String[] wordArray=null;
+		int charCount=0;
+	
+			try(Scanner scan=new Scanner(new FileReader("mars.txt"))){
+				while(scan.hasNextLine()) {
+					s=scan.nextLine();
+					wordArray=s.split(" ");
+					for (String string : wordArray) {
+						charCount+=string.length();
+					}
+				}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Karakter sayısı: " + charCount);
+		
+	}
+	
+	public void mostDuplicateWord() {
+		
+		HashMap<String, Integer> dupWord=new HashMap<>();
+		String s=null;
+		String[] wordArray=null;
+		
+		try(BufferedReader reader=new BufferedReader(new FileReader("mars.txt"))){
+			while((s=reader.readLine())!=null) {
+				wordArray=s.split(" ");
+				for (String string : wordArray) {
+					string=string.toLowerCase();
+					if(string.endsWith("!")||string.endsWith(".")||string.endsWith(";")||string.endsWith(",")||string.endsWith("?")) {
+						string=string.substring(0,string.length()-1);
+					}
+				}
+				for (String string : wordArray) {
+					if(dupWord.containsKey(string)) {
+						dupWord.put(string,dupWord.get(string)+1);
+					} else {
+						dupWord.put(string, 1);
+					}
+				}
+			}
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int n=0;
+		String m=null;
+		for (String string : dupWord.keySet()) {
+			if(dupWord.get(string)>=n&&!string.equals("")) {
+				n=dupWord.get(string);
+				m=string;
+			}
+		}
+		System.out.println("En çok tekrar eden kelime: " + m);
+		System.out.println("Tekrar etme sayısı: " + n);
+		
+	}
+	
+	
+
+	public static void main(String[] args) throws IOException {
+		HW hw=new HW();
+		//hw.dosyaOlustur();
+		hw.lineCounter();
+		hw.wordCounter();
+		hw.characterCounter();
+		hw.mostDuplicateWord();
+		
+
+	}
+
+}

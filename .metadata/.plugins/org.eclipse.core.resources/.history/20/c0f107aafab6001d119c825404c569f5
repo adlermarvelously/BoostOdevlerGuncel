@@ -1,0 +1,81 @@
+package homework1;
+
+public class EmployeeManager {
+	
+	private int counter =1;
+	
+	public void tax(Employee employee) {
+		
+		
+		
+		
+		if(employee.getRaiseSalary() <= 2000) {
+		employee.setTax(0);
+		
+		}
+		else {
+			employee.setTax(employee.getSalary() * 0.05);
+		}
+	}
+	
+	public void bonus(Employee employee) {
+		if(employee.getWorkHours() >= 40) {
+			employee.setBonus((employee.getWorkHours()-40)*30);
+			System.out.println(employee.getWorkHours() + " kadar bonus eklendi.");
+		}
+		else {
+			System.out.println("Çalışma saatiniz 40 saatten az olduğu için bonus eklenmedi.");
+		}
+	}
+	
+	
+	public void raiseSalary(Employee employee) {
+		if (2023 - employee.getHireYear() < 10) {
+			employee.setRaiseSalary(employee.getSalary() * 0.05);
+			System.out.println("Maaşınıza %5 zam uygulanmıştır.");
+		}else if ( (2023 - employee.getHireYear()) >= 10  && (2022 - employee.getHireYear()) < 20) {
+			employee.setRaiseSalary(employee.getSalary() * 0.10);
+			System.out.println("Maaşınıza %10 zam uygulanmıştır.");
+		}else if (2022 - employee.getHireYear() >= 20) {
+			employee.setRaiseSalary(employee.getSalary() * 0.15);
+			System.out.println("Maaşınıza %15 zam uygulanmıştır.");
+		}
+		else {
+			System.out.println("Zam uygulanmamıştır.");
+		}
+	}
+	
+	public double salaryUpdated(Employee employee) {
+		employee.setSalary(employee.getSalary() - employee.getTax() + employee.getBonus());
+		return employee.getSalary();
+	}
+	
+	public double finalSalary(Employee employee) {
+		employee.setSalary(employee.getSalary() + employee.getSalaryRaise());
+		return employee.getSalary();
+	}
+	
+	public void employeeBilgileriniYazdir(Employee employee) {
+		
+			System.out.println("- Employee " + counter + " -\n");
+			System.out.println("Name: " + employee.getName());
+			System.out.println("Salary: " + employee.getSalary());
+			System.out.println("Working hours: " + employee.getWorkHours());
+			System.out.println("Hire year: " + employee.getHireYear());
+			tax(employee);
+			System.out.println("Tax: " + employee.getTax());
+			bonus(employee);
+			System.out.println("Bonus: " + employee.getBonus());
+			raiseSalary(employee);
+			System.out.println("Salary raise: " + employee.getSalaryRaise());
+			System.out.println("- - - - -");
+			System.out.println("Salary with taxes deducted and bonuses included: " + salaryUpdated(employee));
+			System.out.println("Final salary with raise added: " + finalSalary(employee));
+			System.out.println("- - - - -\n");
+
+			counter++;
+		}
+	
+	
+	
+}

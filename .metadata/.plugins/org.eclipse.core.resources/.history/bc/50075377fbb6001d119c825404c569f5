@@ -1,0 +1,23 @@
+package homework1;
+
+public class Main {
+	
+	
+public static void main(String[] args) {
+		
+		EmployeeManager employeeManager = new EmployeeManager();
+		
+		Employee employee1 = new Employee("Merve", 3000, 65, 1995);
+		
+		employeeManager.employeeBilgileriniYazdir(employee1);
+		
+		Employee employee2 = new Employee("Ayşe", 1000, 35, 2020);
+		
+		employeeManager.employeeBilgileriniYazdir(employee2);
+		
+		Employee employee3 = new Employee("Deniz", 5000, 40, 2012);
+		
+		employeeManager.employeeBilgileriniYazdir(employee3);
+
+}
+}

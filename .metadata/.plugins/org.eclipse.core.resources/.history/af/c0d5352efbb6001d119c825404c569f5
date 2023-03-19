@@ -1,0 +1,110 @@
+package homework1;
+
+public class Employee {
+
+	private String name;
+
+	private double salaryRaise;
+	private double salary;
+	
+	
+
+	private double workHours;
+	private int hireYear;
+
+	private double tax;
+	private double bonus;
+
+	public Employee() {
+
+	}
+
+	
+
+	public Employee(String name, double salaryRaise, double salary, double workHours, int hireYear, double tax,
+			double bonus) {
+		super();
+		this.name = name;
+		this.salaryRaise = salaryRaise;
+		this.salary = salary;
+		this.workHours = workHours;
+		this.hireYear = hireYear;
+		this.tax = tax;
+		this.bonus = bonus;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getWorkHours() {
+		return workHours;
+	}
+
+	public void setWorkHours(double workHours) {
+		this.workHours = workHours;
+	}
+
+	public int getHireYear() {
+		return hireYear;
+	}
+
+	public void setHireYear(int hireYear) {
+		this.hireYear = hireYear;
+	}
+
+	public double getTax() {
+		return tax;
+	}
+
+	public void setTax(double tax) {
+		this.tax = tax;
+	}
+
+	public double getBonus() {
+		return bonus;
+	}
+
+	public void setBonus(double bonus) {
+		this.bonus = bonus;
+	}
+
+	public double getRaiseSalary() {
+		return salaryRaise;
+	}
+
+	public void setRaiseSalary(double raiseSalary) {
+		this.salaryRaise = raiseSalary;
+	}
+	
+	
+
+	public double getSalaryRaise() {
+		return salaryRaise;
+	}
+
+	public void setSalaryRaise(double salaryRaise) {
+		this.salaryRaise = salaryRaise;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", salaryRaise=" + salaryRaise + ", workHours=" + workHours + ", hireYear="
+				+ hireYear + ", tax=" + tax + ", bonus=" + bonus + "]";
+	}
+
+}
